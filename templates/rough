@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flashcard</title>
+    <style>
+        body {
+            background-color: {{ background_color }};
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .flashcard {
+            background-color: white;
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .flashcard h1 {
+            font-size: 24px;
+        }
+        .flashcard p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-know {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-next {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body style="background-color: {{ background_color }};">
+    <div class="flashcard" id="flashcard">
+        <h1>Flashcard</h1>
+        <p>Spanish: {{ card['SPANISH'] }}</p>
+        <p id="englishTranslation" style="display: none;">English: {{ card['English'] }}</p>
+        <div class="buttons">
+            <form action="/mark_known" method="POST">
+                <button class="btn-know" type="submit">I know this</button>
+            </form>
+            <a class="btn-next" href="/next_card">Next</a>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.getElementById("englishTranslation").style.display = "block";
+        }, 3000);
+    </script>
+</body>
+</html>
